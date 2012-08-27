@@ -1,21 +1,23 @@
 package com.companyname.springapp.web;
 
 import junit.framework.Assert;
-
+import java.util.Map;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.companyname.springapp.service.SimpleProductManager;
 
-public class HelloControllerTests {
+public class InventoryControllerTests {
 
     @Test
     public void testHandleRequestView() throws Exception{		
-        HelloController controller = new HelloController();
+        InventoryController controller = new InventoryController();
+        controller.setProductManager(new SimpleProductManager());
         ModelAndView modelAndView = controller.handleRequest(null, null);		
         Assert.assertEquals("hello", modelAndView.getViewName());
         Assert.assertNotNull(modelAndView.getModel());
-        String nowValue = (String) modelAndView.getModel().get("now");
+        Map modelMap = (Map) modelAndView.getModel().get("model");
+        String nowValue = (String) modelMap.get("now");
         Assert.assertNotNull(nowValue);
     }
-
 }

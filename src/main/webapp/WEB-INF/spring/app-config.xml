@@ -18,5 +18,35 @@
          <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
          <property name="prefix" value="/WEB-INF/views/"></property>
          <property name="suffix" value=".jsp"></property>        
-       </bean>       
+       </bean>
+       
+       <bean id="productManager" class="com.companyname.springapp.service.SimpleProductManager">
+	       <property name="products">
+	            <list>
+	                <ref bean="product1"/>
+	                <ref bean="product2"/>
+	                <ref bean="product3"/>
+	            </list>
+	         </property>
+       </bean>
+       
+       <bean id="product1" class="com.companyname.springapp.domain.Product">
+         <property name="description" value="Lampara"/>
+         <property name="price" value="5.75"/>
+       </bean>
+        
+       <bean id="product2" class="com.companyname.springapp.domain.Product">
+         <property name="description" value="Mesa"/>
+         <property name="price" value="75.25"/>
+       </bean>
+
+       <bean id="product3" class="com.companyname.springapp.domain.Product">
+         <property name="description" value="Silla"/>
+         <property name="price" value="22.79"/>
+       </bean>
+
+       <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+         <property name="basename" value="messages"/>
+       </bean>
+       
 </beans>
